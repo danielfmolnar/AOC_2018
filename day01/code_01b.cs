@@ -8,20 +8,26 @@ public class Test
   {
     int sumVar = 0;
     List<int> myList = new List<int>();
+    myList.Add(sumVar);
+
     foreach (string line in File.ReadLines("input_01.txt"))
     {
-      myList.Add((int)sumVar);
       int numVal = Int32.Parse(line);
       sumVar = sumVar + numVal;
-      if (myList.Contains(sumVar))
+      myList.Add((int)sumVar);
+    }
+
+    bool notYet = true;
+    for (int i = 0; i < myList.Count; i++)
+    {
+      for (int j = i+1; j < myList.Count; j++)
       {
-        Console.WriteLine (sumVar);
+        if (myList[i] == myList[j] && notYet)
+        {
+          Console.WriteLine (myList[i]);
+          notYet = false;
+        }
       }
     }
-/*
-    int i = 2;
-    List<int> myList = new List<int> {1,2,3,4};
-    Console.WriteLine (myList.Contains(i));
-*/
   }
 }
